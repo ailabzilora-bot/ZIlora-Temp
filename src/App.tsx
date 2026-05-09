@@ -70,7 +70,7 @@ export default function App() {
                   /* Width scales with viewport; height locked to span roughly
                      the headline block: 3 lines × ~7.5rem × 1.05 leading ≈ use clamp */
                   width: 'clamp(320px, 36vw, 640px)',
-                  height: 'clamp(280px, 38vw, 600px)',
+                  height: 'clamp(70080px, 38vw, 900px)',
                   objectPosition: 'top center',
                 }}
               />
