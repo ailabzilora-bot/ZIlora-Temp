@@ -4,6 +4,7 @@
  */
 
 import { useEffect, useRef } from 'react';
+import { ArrowRight, ArrowDownRight, MoveUpRight } from 'lucide-react';
 
 export default function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -26,87 +27,117 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#8ee900] text-[#4a494c] font-sans flex flex-col font-medium overflow-hidden relative">
-
+    <div className="min-h-screen bg-[#8ee900] text-[#1c1c1c] font-sans overflow-hidden relative selection:bg-black selection:text-[#8ee900]">
       {/* Navbar */}
-      <nav className="flex justify-between items-center w-full px-8 md:px-16 lg:px-24 py-8 relative z-20">
-        {/* Left: Logo */}
-        <div className="text-[19px] font-bold tracking-tight text-[#4a494c] flex-1">
-          Zilora AI Labs
+      <nav className="flex justify-between items-center w-full px-6 py-6 lg:px-12 relative z-50">
+        {/* Logo */}
+        <div className="flex items-center gap-2 font-black text-2xl tracking-tighter">
+          <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+             <path d="M4 4h6l4 8H8z" />
+             <path d="M14 4h6l-4 8h-6z" />
+             <path d="M4 12h6l4 8H8z" />
+             <path d="M14 12h6l-4 8h-6z" />
+          </svg>
+          ZILORA
         </div>
 
-        {/* Center: Navigation Links */}
-        <div className="hidden md:flex items-center gap-10 text-[15px] font-medium text-[#7a787f] flex-1 justify-center">
-          <a href="#" className="relative text-[#4a494c] hover:text-[#4a494c] transition-colors">
-            Labs
-            <span className="absolute -bottom-1.5 left-0 w-full h-[1.5px] bg-[#4a494c]"></span>
-          </a>
-          <a href="#" className="hover:text-[#4a494c] transition-colors">Models</a>
-          <a href="#" className="hover:text-[#4a494c] transition-colors">Compute</a>
-          <a href="#" className="hover:text-[#4a494c] transition-colors">Docs</a>
+        {/* Links */}
+        <div className="hidden lg:flex items-center gap-10 text-sm font-bold tracking-widest uppercase">
+          <a href="#" className="hover:opacity-60 transition-opacity">Labs</a>
+          <a href="#" className="hover:opacity-60 transition-opacity">Models</a>
+          <a href="#" className="hover:opacity-60 transition-opacity">Compute</a>
+          <a href="#" className="hover:opacity-60 transition-opacity">Docs</a>
         </div>
 
-        {/* Right: Get Started button — video hangs below it via absolute positioning */}
-        <div className="flex-1 flex justify-end">
-          <div className="relative">
-            {/* Button */}
-            <button className="relative z-20 bg-[#5c5b61] text-white px-7 py-2.5 rounded-full text-[14px] font-medium hover:bg-[#4a494c] transition-colors">
-              Get Started
-            </button>
-
-            {/* Video — absolutely positioned below the button, right-aligned to it */}
-            <div
-              className="absolute right-0 pointer-events-none"
-              style={{ top: 'calc(100% - 10px)' }}
-            >
-              <video
-                ref={videoRef}
-                src="/animation.mp4"
-                autoPlay
-                muted
-                playsInline
-                className="w-auto object-contain"
-                style={{
-                  /* Width scales with viewport; height locked to span roughly
-                     the headline block: 3 lines × ~7.5rem × 1.05 leading ≈ use clamp */
-                  width: 'clamp(320px, 36vw, 640px)',
-                  height: 'clamp(70080px, 38vw, 900px)',
-                  objectPosition: 'top center',
-                }}
-              />
-            </div>
-          </div>
+        {/* CTA */}
+        <div className="flex items-center gap-6">
+          <a href="#" className="hidden sm:block text-sm font-bold uppercase tracking-widest hover:opacity-60 transition-opacity">Sign In</a>
+          <button className="bg-white text-black px-6 py-3 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-neutral-100 transition-colors shadow-sm">
+            Launch Project
+          </button>
         </div>
       </nav>
 
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 w-full relative z-10">
-        <div className="flex flex-col w-full max-w-[1600px] mx-auto">
+      {/* Main Content Area */}
+      <main className="relative w-full h-[calc(100vh-96px)] flex justify-center items-center">
 
-          {/* Text Content — left side only */}
-          <div className="max-w-[800px] xl:max-w-[850px] pb-16">
-            <h1 className="text-[3.5rem] sm:text-[5rem] lg:text-[7.5rem] leading-[1.05] tracking-[-0.04em] font-bold text-[#4a494c]">
-              AI Systems Built for<br />
-              Reality. Scaled for<br />
-              Impact.
-            </h1>
+        {/* Huge White Text Background (Split Left/Right to avoid the video box in middle) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-between px-4 lg:px-12 z-0 pointer-events-none">
+          <h1 className="text-white text-[25vw] lg:text-[22vw] font-black leading-none tracking-tighter select-none">AI</h1>
+          <h1 className="text-white text-[25vw] lg:text-[22vw] font-black leading-none tracking-tighter select-none">SYS</h1>
+        </div>
 
-            <p className="mt-8 text-lg sm:text-xl lg:text-[1.375rem] leading-[1.4] text-[#656469] max-w-[800px] mb-12">
-              We design human-centric systems that understand the capabilities<br className="hidden lg:block" />
-              and limitations of current AI. Our technology handles the efficiency<br className="hidden lg:block" />
-              so your people can make the decisions.
-            </p>
+        {/* Center Video (The Robot) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] sm:w-full max-w-[700px] lg:max-w-[900px] h-[95vh] z-20 pointer-events-none flex items-center justify-center mix-blend-darken">
+          <video
+            ref={videoRef}
+            src="/animation.mp4"
+            autoPlay
+            muted
+            playsInline
+            className="w-full h-full object-contain object-bottom scale-100 lg:scale-[1.15] transform-gpu"
+          />
+        </div>
 
-            <div className="flex flex-col sm:flex-row gap-5">
-              <button className="bg-[#5c5b61] text-[#ffffff] px-9 py-4 rounded-full font-medium text-[15px] hover:bg-[#4a494c] transition-colors shadow-sm">
-                Launch Project
-              </button>
-              <button className="bg-white text-[#4a494c] px-9 py-4 rounded-full font-medium text-[15px] hover:bg-neutral-50 transition-colors shadow-sm">
-                Read Whitepaper
-              </button>
+        {/* Top Left Text */}
+        <div className="absolute top-2 lg:top-8 left-6 lg:left-12 z-30 max-w-sm">
+          <h2 className="text-[#1c1c1c] font-black text-xl lg:text-2xl uppercase tracking-tighter leading-[1.1]">
+            Build Systems for Reality.<br />
+            Scale for Impact.
+          </h2>
+          <ArrowDownRight className="mt-4 w-8 h-8 opacity-60 flex-shrink-0" />
+        </div>
+
+        {/* Top Right Users / Avatars */}
+        <div className="absolute top-2 lg:top-8 right-6 lg:right-12 z-30 flex flex-col items-end">
+          <div className="flex -space-x-3 mb-3">
+            <img src="https://i.pravatar.cc/100?img=12" alt="User 1" className="w-[42px] h-[42px] rounded-full border-2 border-[#8ee900] object-cover" />
+            <img src="https://i.pravatar.cc/100?img=33" alt="User 2" className="w-[42px] h-[42px] rounded-full border-2 border-[#8ee900] object-cover" />
+            <img src="https://i.pravatar.cc/100?img=47" alt="User 3" className="w-[42px] h-[42px] rounded-full border-2 border-[#8ee900] object-cover" />
+          </div>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#1c1c1c] text-right leading-tight">
+            Trusted by Builders<br />
+            <span className="opacity-70">— Scale with confidence</span>
+          </p>
+        </div>
+
+        {/* Bottom Left Panel (Waveform) */}
+        <div className="absolute bottom-6 lg:bottom-10 left-6 lg:left-12 z-40 bg-[#a2fa00]/70 lg:bg-[#a2fa00]/40 backdrop-blur-3xl rounded-[2rem] p-5 lg:p-6 shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-white/30 w-[calc(100%-48px)] sm:w-96">
+          <div className="flex items-center gap-4 mb-6 mt-1 px-2">
+            <div className="w-5 h-5 rounded-full border-[3px] border-black flex items-center justify-center shrink-0">
+              <div className="w-1.5 h-1.5 bg-black rounded-full" />
+            </div>
+            {/* Fake Waveform */}
+            <div className="flex-1 flex items-center gap-1.5 h-8">
+              {[4, 8, 5, 10, 6, 9, 3, 7, 5, 12, 8, 4, 6, 2, 5, 8, 4].map((h, i) => (
+                <div key={i} className="w-[2.5px] bg-black/80 rounded-full" style={{ height: `${h * 10}%` }} />
+              ))}
             </div>
           </div>
+          <button className="bg-transparent border-[2px] border-black text-black w-full py-4 rounded-xl font-black uppercase tracking-widest text-[11px] lg:text-xs hover:bg-black hover:text-[#8ee900] transition-colors flex items-center justify-between px-6">
+            Read Whitepaper - It's Free
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
+
+        {/* Bottom Right Tags */}
+        <div className="absolute bottom-6 lg:bottom-10 right-6 lg:right-12 z-40 max-w-[280px] lg:max-w-[420px] flex flex-wrap gap-2 lg:gap-3 justify-end items-end">
+          {/* Decorative Arrow element */}
+          <div className="hidden lg:flex absolute -top-16 -right-6 bg-[#a2fa00]/40 backdrop-blur-3xl w-28 h-28 rounded-[2rem] items-center justify-center border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.1)] pointer-events-none">
+             <MoveUpRight className="w-12 h-12 stroke-[1.5] text-black" />
+          </div>
+          
+          {['Models', 'Compute', 'Labs', 'Vision', 'Voice', 'Docs', 'Enterprise'].map((tag, i) => (
+            <span 
+              key={tag}
+              className={`px-4 py-2 lg:px-5 lg:py-2.5 rounded-full text-[10px] lg:text-xs font-black uppercase tracking-[0.15em] cursor-pointer transition-colors border-[2px] border-black shadow-sm
+                ${i === 0 ? 'bg-black text-[#8ee900]' : 'bg-transparent text-black hover:bg-black hover:text-[#8ee900]'}`}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
       </main>
     </div>
   );
