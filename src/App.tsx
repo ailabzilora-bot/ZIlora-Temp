@@ -1,0 +1,108 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { useEffect, useRef } from 'react';
+
+export default function App() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      if (video.currentTime >= 5) {
+        video.pause();
+        video.currentTime = 5;
+      }
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#caff00] text-[#4a494c] font-sans flex flex-col font-medium overflow-hidden">
+      {/* Navbar */}
+      <nav className="flex justify-between items-center w-full px-8 md:px-16 lg:px-24 py-8 relative z-20">
+        {/* Left: Logo */}
+        <div className="text-[19px] font-bold tracking-tight text-[#4a494c] flex-1">
+          Zilora AI Labs
+        </div>
+
+        {/* Center: Navigation Links */}
+        <div className="hidden md:flex items-center gap-10 text-[15px] font-medium text-[#7a787f] flex-1 justify-center">
+          <a
+            href="#"
+            className="relative text-[#4a494c] hover:text-[#4a494c] transition-colors"
+          >
+            Labs
+            <span className="absolute -bottom-1.5 left-0 w-full h-[1.5px] bg-[#4a494c]"></span>
+          </a>
+          <a href="#" className="hover:text-[#4a494c] transition-colors">
+            Models
+          </a>
+          <a href="#" className="hover:text-[#4a494c] transition-colors">
+            Compute
+          </a>
+          <a href="#" className="hover:text-[#4a494c] transition-colors">
+            Docs
+          </a>
+        </div>
+
+        {/* Right: CTA Button */}
+        <div className="flex-1 flex justify-end">
+          <button className="bg-[#5c5b61] text-white px-7 py-2.5 rounded-full text-[14px] font-medium hover:bg-[#4a494c] transition-colors">
+            Get Started
+          </button>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 w-full relative z-10">
+        <div className="flex flex-col xl:flex-row items-center justify-between w-full max-w-[1600px] mx-auto gap-8 relative">
+          
+          {/* Text Content */}
+          <div className="flex-1 max-w-[800px] xl:max-w-[850px] z-10 pb-16 xl:pb-0">
+            <h1 className="text-[3.5rem] sm:text-[5rem] lg:text-[7.5rem] leading-[1.05] tracking-[-0.04em] font-bold text-[#4a494c]">
+              AI Systems Built for<br />
+              Reality. Scaled for<br />
+              Impact.
+            </h1>
+            
+            <p className="mt-8 text-lg sm:text-xl lg:text-[1.375rem] leading-[1.4] text-[#656469] max-w-[800px] mb-12">
+              We design human-centric systems that understand the capabilities<br className="hidden lg:block" />
+              and limitations of current AI. Our technology handles the efficiency<br className="hidden lg:block" />
+              so your people can make the decisions.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-5">
+              <button className="bg-[#5c5b61] text-[#ffffff] px-9 py-4 rounded-full font-medium text-[15px] hover:bg-[#4a494c] transition-colors shadow-sm">
+                Launch Project
+              </button>
+              <button className="bg-white text-[#4a494c] px-9 py-4 rounded-full font-medium text-[15px] hover:bg-neutral-50 transition-colors shadow-sm">
+                Read Whitepaper
+              </button>
+            </div>
+          </div>
+
+          {/* 3D Animation Video */}
+          <div className="flex-1 w-full max-w-[600px] xl:max-w-[750px] relative z-0 flex justify-center xl:justify-end xl:absolute xl:right-0 xl:top-1/2 xl:-translate-y-1/2 pointer-events-none">
+            <video
+              ref={videoRef}
+              src="/animation.mp4" /* Replace this with your actual video path */
+              autoPlay
+              muted
+              playsInline
+              className="w-full h-auto object-contain max-h-[80vh]"
+            />
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
