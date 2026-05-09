@@ -26,7 +26,21 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#8ee900] text-[#4a494c] font-sans flex flex-col font-medium overflow-hidden">
+    <div className="min-h-screen bg-[#8ee900] text-[#4a494c] font-sans flex flex-col font-medium overflow-hidden relative">
+      
+      {/* 3D Animation Video — anchored top-right, behind navbar CTA */}
+      <div className="absolute top-0 right-0 w-[420px] lg:w-[520px] xl:w-[620px] pointer-events-none z-0"
+           style={{ transform: 'translateY(-4%)' }}>
+        <video
+          ref={videoRef}
+          src="/animation.mp4"
+          autoPlay
+          muted
+          playsInline
+          className="w-full h-auto object-contain"
+        />
+      </div>
+
       {/* Navbar */}
       <nav className="flex justify-between items-center w-full px-8 md:px-16 lg:px-24 py-8 relative z-20">
         {/* Left: Logo */}
@@ -36,26 +50,17 @@ export default function App() {
 
         {/* Center: Navigation Links */}
         <div className="hidden md:flex items-center gap-10 text-[15px] font-medium text-[#7a787f] flex-1 justify-center">
-          <a
-            href="#"
-            className="relative text-[#4a494c] hover:text-[#4a494c] transition-colors"
-          >
+          <a href="#" className="relative text-[#4a494c] hover:text-[#4a494c] transition-colors">
             Labs
             <span className="absolute -bottom-1.5 left-0 w-full h-[1.5px] bg-[#4a494c]"></span>
           </a>
-          <a href="#" className="hover:text-[#4a494c] transition-colors">
-            Models
-          </a>
-          <a href="#" className="hover:text-[#4a494c] transition-colors">
-            Compute
-          </a>
-          <a href="#" className="hover:text-[#4a494c] transition-colors">
-            Docs
-          </a>
+          <a href="#" className="hover:text-[#4a494c] transition-colors">Models</a>
+          <a href="#" className="hover:text-[#4a494c] transition-colors">Compute</a>
+          <a href="#" className="hover:text-[#4a494c] transition-colors">Docs</a>
         </div>
 
-        {/* Right: CTA Button */}
-        <div className="flex-1 flex justify-end">
+        {/* Right: CTA Button — sits in front of the video */}
+        <div className="flex-1 flex justify-end relative z-30">
           <button className="bg-[#5c5b61] text-white px-7 py-2.5 rounded-full text-[14px] font-medium hover:bg-[#4a494c] transition-colors">
             Get Started
           </button>
@@ -64,16 +69,16 @@ export default function App() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 w-full relative z-10">
-        <div className="flex flex-col xl:flex-row items-center justify-between w-full max-w-[1600px] mx-auto gap-8 relative">
+        <div className="flex flex-col w-full max-w-[1600px] mx-auto">
           
-          {/* Text Content */}
-          <div className="flex-1 max-w-[800px] xl:max-w-[850px] z-10 pb-16 xl:pb-0">
+          {/* Text Content — left aligned, no competing element beside it */}
+          <div className="max-w-[800px] xl:max-w-[850px] pb-16">
             <h1 className="text-[3.5rem] sm:text-[5rem] lg:text-[7.5rem] leading-[1.05] tracking-[-0.04em] font-bold text-[#4a494c]">
               AI Systems Built for<br />
               Reality. Scaled for<br />
               Impact.
             </h1>
-            
+
             <p className="mt-8 text-lg sm:text-xl lg:text-[1.375rem] leading-[1.4] text-[#656469] max-w-[800px] mb-12">
               We design human-centric systems that understand the capabilities<br className="hidden lg:block" />
               and limitations of current AI. Our technology handles the efficiency<br className="hidden lg:block" />
@@ -88,18 +93,6 @@ export default function App() {
                 Read Whitepaper
               </button>
             </div>
-          </div>
-
-          {/* 3D Animation Video */}
-          <div className="flex-1 w-full relative z-0 flex justify-center xl:absolute xl:right-[8%] 2xl:right-[15%] xl:w-[950px] 2xl:w-[1100px] xl:top-1/2 xl:-translate-y-1/2 pointer-events-none">
-            <video
-              ref={videoRef}
-              src="/animation.mp4" /* Replace this with your actual video path */
-              autoPlay
-              muted
-              playsInline
-              className="w-full h-auto object-contain scale-[1.2] lg:scale-[1.3] xl:scale-100"
-            />
           </div>
         </div>
       </main>
