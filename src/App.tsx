@@ -26,7 +26,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#caff00] text-[#4a494c] font-sans flex flex-col font-medium overflow-hidden">
+    <div className="min-h-screen bg-[#8ee900] text-[#4a494c] font-sans flex flex-col font-medium overflow-hidden">
       {/* Navbar */}
       <nav className="flex justify-between items-center w-full px-8 md:px-16 lg:px-24 py-8 relative z-20">
         {/* Left: Logo */}
@@ -91,14 +91,14 @@ export default function App() {
           </div>
 
           {/* 3D Animation Video */}
-          <div className="flex-1 w-full max-w-[600px] xl:max-w-[750px] relative z-0 flex justify-center xl:justify-end xl:absolute xl:right-0 xl:top-1/2 xl:-translate-y-1/2 pointer-events-none">
+          <div className="flex-1 w-full relative z-0 flex justify-center xl:absolute xl:right-[8%] 2xl:right-[15%] xl:w-[950px] 2xl:w-[1100px] xl:top-1/2 xl:-translate-y-1/2 pointer-events-none">
             <video
               ref={videoRef}
               src="/animation.mp4" /* Replace this with your actual video path */
               autoPlay
               muted
               playsInline
-              className="w-full h-auto object-contain max-h-[80vh]"
+              className="w-full h-auto object-contain scale-[1.2] lg:scale-[1.3] xl:scale-100"
             />
           </div>
         </div>
